@@ -1,0 +1,34 @@
+def turn_around():
+    turn_left()
+    turn_left()
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+    
+while not at_goal() == True: 
+    if front_is_clear() == True:
+        if wall_on_right() == False and wall_in_front() == False:
+            turn_around()
+            if wall_on_right() == False and wall_in_front() == False:
+                turn_around()
+                move()
+            else: 
+                turn_left()
+                move()
+        elif wall_on_right() == False: 
+            turn_right()
+            move()
+        else: 
+            move()
+    elif wall_on_right() == True and wall_in_front() == True:
+        turn_left()
+    elif wall_in_front() == True and wall_on_right() == False: 
+        turn_right()
+        move()
+        
+ 
+    
+   
+   
