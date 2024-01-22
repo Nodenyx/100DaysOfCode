@@ -1,26 +1,67 @@
-height = input("Hello! What is your height in centimeters?: ")
-price = 0
+print('''
 
-if int(height) >= 120:
-  age = input("Secondly, what is your age?: ")
-  
-  if int(age) >= 45 and int(age) <= 55:
-    print("Since you have been driven out on a new inner journey, here is a free ticket!")
-    price = 0
-  elif int(age) >= 18:
-    print("Adult tickets are 12$")
-    price = 12
-  elif int(age) <18 and int(age) >= 12:
-    print("Youth tickets are 7$")
-    price = 7
-  else: 
-    print("Child tickets are 5$")
-    price = 5
+                    .-------.
+                    |(~\o/~)|
+                  _.||\/X\/||._
+               ,-"  || \ / ||  "-,
+             ,'  () ||o X o|| ()  ',
+            / ()  ,-|| / \ ||-,  () \
+           : o  ,'  ||/\X/\||  ',  o ;
+        .----------._)~   ~(_.----------.
+        |\/)~~(\/\   (~\ /~)   /\/)~~(\/|
+        |(X () X) >o  >-X-<  o< (X () X)|
+        |/\)__(/\/  _(_/|\_)_  \/\)__(/\|
+        '----------' )     ( '----------'
+           ; o  ',  ||\/~\/||  ,'  o ;
+            \ ()  '-|| \o/ ||-'  () /
+             ',  () |(~\X/~)| ()  ,'
+               '-._ ||\/ \/|| _.-'
+                   '|| \_/ ||'
+                    ||  X  ||
+                    ||\(/\/||
+                    ||=)O(=||
+                    ||/\/)\||
+                    ||  X  ||
+                    || / \ ||
+                    ||/\X/\||
+                    |(_/o\_)|
+                    '._____.'
 
-  photo = input("Would you like a photo? Y or N:")
-  if photo == "Y":
-    price += 3
-  print(f"Your total is ${price}")
-  
-else:
-  print("You are not tall enough to enter this exquisit ride.")
+''')
+print("Welcome to The Cursed Church.")
+print("Your mission is to find salvation.") 
+
+#https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload
+
+#Write your code below this line 👇
+first_decision = input("You are standing at a dark door leading into an old church, do you open it or look for another entrance? (type open or look): ")
+if first_decision.lower() == "look":
+  print("A satanic priest flies out one of the windows and swings an axe into your skull, game over.")
+  quit()
+elif first_decision.lower() == "open": 
+  print("You open the door slowly and investigate the entrance before you manage to take a step inside. In front of you is a large nave with a beautiful sanctuary at the very end.")
+else: 
+  print("You died from a heart attack, game over.")
+  quit()
+second_decision = input("You walk towards it and all of a sudden, a portal opens into a dimenstion of fire and flames. Do you enter the portal, or do you turn back? (type portal or back): ")
+
+if second_decision.lower() == "back":
+  print("A swarm of demons come out of the portal like a horde of wolves and kills you brutally, game over.")
+  quit()
+elif second_decision.lower() == "portal": 
+  print("You enter the portal and find yourself in a hot cave underground, lava is flowing everywhere and you are presented with three choices. You can either jump of the cliff and into the lava, walk towards a dark cavern filled with the screams of tortured souls or you can simply go back through the portal.")
+else: 
+  print("You died from a heart attack, game over.")
+  quit()
+third_decision = input("What do you choose?(type jump, cavern or portal): ")
+if third_decision.lower() == "portal":
+  print("You go back through the portal but shortly after a horde of demons swarm out of the portal and kills you mercilessly. Game over.")
+  quit()
+elif third_decision.lower() == "jump":
+  print("You jump off the cliff and into the lava, you burn to death, game over.")
+  quit()
+elif third_decision.lower() == "cavern": 
+  print("You enter the cavern and as you hear the rapid footsteps of demons running through a portal. A tortured scream suddenly turns into a gentle question, as you turn around you see a man with long hair and a beard telling you to follow him. You follow him and he leads you on a long journey, one that never seems to end. You win.")
+else: 
+  print("You died from a heart attack, game over.")
+  quit()
