@@ -1,0 +1,54 @@
+#Step 1 
+
+word_list = ["aardvark", "baboon", "camel"]
+
+#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+
+#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
+
+#TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
+import random
+import hangman_art
+import hangman_words
+
+position = 0
+correct_guess = 0
+list_letters = []
+lives = 6 
+guessed_letter = []
+chosen_word = random.choice(hangman_words.word_list)
+print(hangman_art.logo)
+print(f"pssst, the word is {chosen_word}")
+for letter in range(0, len(chosen_word)):
+    list_letters.append("_")
+
+while correct_guess < len(chosen_word) and lives > 0:
+    user_guess = input("Guess the letter: ").lower()
+    if user_guess not in chosen_word:
+        if user_guess in guessed_letter: 
+            print(f"You've already guessed: {user_guess}")
+        else:
+            lives -= 1
+            print(f"Wrong, '{user_guess}' is not in the word, you may guess again, lives left: {lives}")
+            guessed_letter.append(user_guess)
+    elif user_guess in chosen_word: 
+        if user_guess in guessed_letter:
+            print(f"You've already guessed: {user_guess}")
+        else:
+            for letter in chosen_word:
+                if letter == user_guess :
+                    list_letters[position] = letter
+                    correct_guess += 1
+                    guessed_letter.append(user_guess)
+                
+                position += 1
+            print(f"You guessed {user_guess}, that is part of the word!")
+
+    print(list_letters)
+    print(hangman_art.stages[lives])
+    position = 0
+   
+if lives == 0:
+    print("You lose")
+else: 
+    print("You win")
