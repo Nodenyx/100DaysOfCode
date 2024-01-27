@@ -1,0 +1,19 @@
+from replit import clear
+import art
+more_bidders = "yes"
+bidders = []
+while more_bidders == "yes":
+    print(art.logo)
+    name = input("What is your name: \n")
+    bid = int(input("What is your bid: \n$"))
+    more_bidders = input("Are there any other bidders? Type 'yes' or 'no'.\n")
+    bidders.append({"name": name, "bid" : bid})
+    clear()
+highest_bid = 0
+highest_bidder = ""
+for bidder in bidders:
+    if bidder["bid"] > highest_bid:
+        highest_bid = bidder["bid"]
+        highest_bidder = bidder["name"]
+
+print(f"The winner is {highest_bidder} with a bid of {highest_bid}$.")
