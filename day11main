@@ -1,0 +1,110 @@
+from replit import clear
+import art
+import random
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+player_total_score = 0
+computer_total_score = 0
+player_hand = []
+computer_hand = []
+game_over = False
+
+def calculate(hand): 
+    total = 0
+    for x in hand:
+        total += x
+    return total
+
+def twenty_one(hand):
+    if calculate(hand) > 21:
+        return True
+    else:
+        return False
+
+def blackjack(hand):
+    if calculate(hand) == 21:
+        return True
+    else:
+        return False
+
+def compare(player_total_score, computer_total_score):
+    if player_total_score > computer_total_score:
+        print("You win 😁")
+    elif player_total_score < computer_total_score:
+        print("You lose 😤")
+    elif player_total_score == computer_total_score: 
+        print("It's a draw")
+
+def hand_check(player_hand, computer_hand, player_total_score, computer_total_score):
+    if blackjack(player_hand):
+        print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+        print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+        print("Win with a blackjack 😎")
+
+    elif twenty_one(computer_hand):
+        print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+        print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+        print("Computer went over. You win 😁")
+
+    else:
+        print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+        print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+        compare(player_total_score, computer_total_score)
+
+
+
+def main(player_continue):
+    clear()
+    print(art.logo)
+    player_hand = []
+    computer_hand = []
+    player_total_score = 0
+    computer_total_score = 0
+    game_over = False
+    another_card = "n"
+    player_hand.append(random.choice(cards))     
+    player_hand.append(random.choice(cards))         
+    computer_hand.append(random.choice(cards))   
+    computer_hand.append(random.choice(cards)) 
+    while computer_total_score < 17:
+        computer_hand.append(random.choice(cards))
+        computer_total_score = calculate(computer_hand)
+    player_total_score = calculate(player_hand)
+    computer_total_score = calculate(computer_hand)
+    print(f"    Your cards: {player_hand}, current score: {calculate(player_hand)}")
+    print(f"    Computer's first card: {computer_hand[0]}")
+    if twenty_one(player_hand):
+        print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+        print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+        print("You went over. You lose 😭")
+        game_over = True
+    elif blackjack(computer_hand):
+        print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+        print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+        print("Opponent has blackjack, you lose")
+        game_over = True
+    if game_over == False: 
+        another_card = input("Type y to get another card, type n to pass: ")
+    while another_card == "y":
+        player_hand.append(random.choice(cards))
+        player_total_score = calculate(player_hand)
+        print(f"    Your cards: {player_hand}, current score: {calculate(player_hand)}")
+        print(f"    Computer's first card: {computer_hand[0]}")
+        if twenty_one(player_hand):
+            print(f"    Your final hand: {player_hand}, final score {player_total_score}")
+            print(f"    Computer's final hand: {computer_hand}, final score {computer_total_score}")
+            print("You went over. You lose 😭")
+            another_card = "n"
+            game_over = True
+        else:
+            another_card = input("Type y to get another card, type n to pass: ")
+    if another_card == "n":
+        if game_over == False: 
+            hand_check(player_hand, computer_hand, player_total_score, computer_total_score)
+
+        
+player_continue = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+while player_continue == "y":
+    main(player_continue)
+    player_continue = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+    
