@@ -1,0 +1,66 @@
+# Store the amount of correct guesses 
+import art
+import game_data
+import random
+from replit import clear 
+
+correct_guesses = 0
+game_over = False
+option_a = {}
+option_b = {}
+
+def answer_check(guess, answer):
+    if guess == answer: 
+        return True
+    elif guess != answer: 
+        return False
+    else: 
+        return None
+
+def chooser(option):
+    option = game_data.data[random.randint(0, len(game_data.data))]
+    return option
+
+def answer_getter(option_a, option_b):
+    if option_a['follower_count'] > option_b['follower_count']:
+        return "A"
+    elif option_a['follower_count'] == option_b['follower_count']:
+        return "A", "B"
+    else:
+        return "B"
+
+def main(): 
+    global option_a
+    global option_b
+    if option_b == {} and option_a == {}:
+        option_a = chooser(option_a)
+        option_b = chooser(option_b)
+        while option_a == option_b:
+            option_b = chooser(option_b)
+    else:
+        option_a = option_b
+        option_b = chooser(option_b)
+        while option_a == option_b:
+            option_b = chooser(option_b)
+    answer = answer_getter(option_a, option_b)
+    print(f"Compare A: {option_a['name']}, a {option_a['description']}, from {option_a['country']}")
+    print(art.vs)
+    print(f"Compare B: {option_b['name']}, a {option_b['description']}, from {option_b['country']}")
+    guess = input("Who has more followers? Type 'A' or 'B': ").upper()
+    return answer_check(guess, answer)
+
+print(art.logo)
+user = main()
+
+while not game_over:
+    if user:
+        clear()
+        print(art.logo)
+        correct_guesses += 1
+        print(f"You're right! Current score: {correct_guesses}")
+        user = main()
+    elif not user: 
+        clear()
+        print(f"Sorry, that's wrong. Final score: {correct_guesses}")
+        game_over = True
+        
