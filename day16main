@@ -1,0 +1,25 @@
+import menu
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
+
+
+George = CoffeeMaker()
+Economy = MoneyMachine()
+LocalMenu = Menu()
+user_input = ""
+
+
+while not user_input == "off":
+    choices = LocalMenu.get_items()
+    if user_input == "report":
+        George.report()
+        Economy.report()
+    elif user_input == "espresso" or user_input == "latte" or user_input == "cappuccino":
+        choice = LocalMenu.find_drink(user_input)
+        if George.is_resource_sufficient(choice):
+            if Economy.make_payment(choice.cost):
+                George.make_coffee(choice)
+    else:
+        pass
+    user_input = input(f"What would you like? ({choices})?: ")
